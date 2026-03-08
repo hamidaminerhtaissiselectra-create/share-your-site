@@ -1,0 +1,124 @@
+/* Fonts loaded via index.html link tags */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 33% 98%;
+    --foreground: 213 39% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 213 39% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 39% 15%;
+
+    --primary: 213 72% 30%;
+    --primary-foreground: 210 33% 98%;
+
+    --secondary: 210 60% 94%;
+    --secondary-foreground: 213 72% 30%;
+
+    --muted: 210 30% 95%;
+    --muted-foreground: 213 15% 50%;
+
+    --accent: 205 85% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 25% 90%;
+    --input: 210 25% 90%;
+    --ring: 213 72% 30%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Custom tokens */
+    --hero-gradient: linear-gradient(135deg, hsl(213, 72%, 30%) 0%, hsl(205, 85%, 45%) 100%);
+    --section-gradient: linear-gradient(180deg, hsl(210, 33%, 98%) 0%, hsl(210, 60%, 94%) 100%);
+    --card-shadow: 0 4px 24px -4px hsl(213 72% 30% / 0.08);
+    --card-shadow-hover: 0 12px 40px -8px hsl(213 72% 30% / 0.15);
+
+    /* Service icon colors */
+    --service-blue: 213 72% 50%;
+    --service-rose: 350 80% 55%;
+    --service-emerald: 160 70% 40%;
+    --service-violet: 260 65% 55%;
+    --service-cyan: 190 80% 45%;
+    --service-orange: 25 90% 55%;
+  }
+
+  .dark {
+    --background: 213 39% 10%;
+    --foreground: 210 33% 98%;
+    --card: 213 39% 13%;
+    --card-foreground: 210 33% 98%;
+    --popover: 213 39% 13%;
+    --popover-foreground: 210 33% 98%;
+    --primary: 205 85% 55%;
+    --primary-foreground: 213 39% 10%;
+    --secondary: 213 30% 20%;
+    --secondary-foreground: 210 33% 98%;
+    --muted: 213 30% 18%;
+    --muted-foreground: 210 20% 65%;
+    --accent: 205 85% 45%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 213 30% 20%;
+    --input: 213 30% 20%;
+    --ring: 205 85% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--hero-gradient);
+  }
+  .bg-hero-gradient {
+    background-image: var(--hero-gradient);
+  }
+  .bg-section-gradient {
+    background-image: var(--section-gradient);
+  }
+  .card-shadow {
+    box-shadow: var(--card-shadow);
+  }
+  .card-shadow-hover {
+    box-shadow: var(--card-shadow-hover);
+  }
+}
