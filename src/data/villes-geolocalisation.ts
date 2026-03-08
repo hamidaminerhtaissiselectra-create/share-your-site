@@ -1,0 +1,63 @@
+export interface CityLocation {
+  name: string;
+  zipCode: string;
+  lat: number;
+  lng: number;
+  type: "arrondissement" | "ville";
+}
+
+export const citiesLocationData: CityLocation[] = [
+  { name: "Paris 1er", zipCode: "75001", lat: 48.8626, lng: 2.3364, type: "arrondissement" },
+  { name: "Paris 2e", zipCode: "75002", lat: 48.8677, lng: 2.3412, type: "arrondissement" },
+  { name: "Paris 3e", zipCode: "75003", lat: 48.8629, lng: 2.3601, type: "arrondissement" },
+  { name: "Paris 4e", zipCode: "75004", lat: 48.8543, lng: 2.3576, type: "arrondissement" },
+  { name: "Paris 5e", zipCode: "75005", lat: 48.8445, lng: 2.3490, type: "arrondissement" },
+  { name: "Paris 6e", zipCode: "75006", lat: 48.8491, lng: 2.3329, type: "arrondissement" },
+  { name: "Paris 7e", zipCode: "75007", lat: 48.8561, lng: 2.3126, type: "arrondissement" },
+  { name: "Paris 8e", zipCode: "75008", lat: 48.8725, lng: 2.3126, type: "arrondissement" },
+  { name: "Paris 9e", zipCode: "75009", lat: 48.8760, lng: 2.3375, type: "arrondissement" },
+  { name: "Paris 10e", zipCode: "75010", lat: 48.8761, lng: 2.3601, type: "arrondissement" },
+  { name: "Paris 11e", zipCode: "75011", lat: 48.8594, lng: 2.3787, type: "arrondissement" },
+  { name: "Paris 12e", zipCode: "75012", lat: 48.8393, lng: 2.3959, type: "arrondissement" },
+  { name: "Paris 13e", zipCode: "75013", lat: 48.8283, lng: 2.3622, type: "arrondissement" },
+  { name: "Paris 14e", zipCode: "75014", lat: 48.8296, lng: 2.3237, type: "arrondissement" },
+  { name: "Paris 15e", zipCode: "75015", lat: 48.8412, lng: 2.2999, type: "arrondissement" },
+  { name: "Paris 16e", zipCode: "75016", lat: 48.8604, lng: 2.2740, type: "arrondissement" },
+  { name: "Paris 17e", zipCode: "75017", lat: 48.8835, lng: 2.3067, type: "arrondissement" },
+  { name: "Paris 18e", zipCode: "75018", lat: 48.8925, lng: 2.3444, type: "arrondissement" },
+  { name: "Paris 19e", zipCode: "75019", lat: 48.8827, lng: 2.3821, type: "arrondissement" },
+  { name: "Paris 20e", zipCode: "75020", lat: 48.8631, lng: 2.4008, type: "arrondissement" },
+  { name: "Aubervilliers", zipCode: "93300", lat: 48.9131, lng: 2.3832, type: "ville" },
+  { name: "Bagnolet", zipCode: "93170", lat: 48.8692, lng: 2.4181, type: "ville" },
+  { name: "Bobigny", zipCode: "93000", lat: 48.9086, lng: 2.4397, type: "ville" },
+  { name: "Boulogne-Billancourt", zipCode: "92100", lat: 48.8352, lng: 2.2409, type: "ville" },
+  { name: "Cergy", zipCode: "95000", lat: 49.0362, lng: 2.0771, type: "ville" },
+  { name: "Corbeil-Essonnes", zipCode: "91100", lat: 48.6138, lng: 2.4840, type: "ville" },
+  { name: "Courbevoie", zipCode: "92400", lat: 48.8973, lng: 2.2522, type: "ville" },
+  { name: "Créteil", zipCode: "94000", lat: 48.7771, lng: 2.4531, type: "ville" },
+  { name: "Fontenay-sous-Bois", zipCode: "94120", lat: 48.8514, lng: 2.4770, type: "ville" },
+  { name: "Ivry-sur-Seine", zipCode: "94200", lat: 48.8158, lng: 2.3876, type: "ville" },
+  { name: "La Défense", zipCode: "92400", lat: 48.8919, lng: 2.2383, type: "ville" },
+  { name: "Levallois-Perret", zipCode: "92300", lat: 48.8946, lng: 2.2874, type: "ville" },
+  { name: "Mantes-la-Jolie", zipCode: "78200", lat: 48.9907, lng: 1.7159, type: "ville" },
+  { name: "Melun", zipCode: "77000", lat: 48.5405, lng: 2.6559, type: "ville" },
+  { name: "Montreuil", zipCode: "93100", lat: 48.8638, lng: 2.4484, type: "ville" },
+  { name: "Neuilly-sur-Seine", zipCode: "92200", lat: 48.8885, lng: 2.2692, type: "ville" },
+  { name: "Noisy-le-Sec", zipCode: "93130", lat: 48.8894, lng: 2.4503, type: "ville" },
+  { name: "Pantin", zipCode: "93500", lat: 48.8924, lng: 2.4073, type: "ville" },
+  { name: "Pontoise", zipCode: "95000", lat: 49.0516, lng: 2.1010, type: "ville" },
+  { name: "Puteaux", zipCode: "92800", lat: 48.8850, lng: 2.2389, type: "ville" },
+  { name: "Rambouillet", zipCode: "78120", lat: 48.6444, lng: 1.8319, type: "ville" },
+  { name: "Rueil-Malmaison", zipCode: "92500", lat: 48.8763, lng: 2.1809, type: "ville" },
+  { name: "Saint-Cloud", zipCode: "92210", lat: 48.8437, lng: 2.2195, type: "ville" },
+  { name: "Saint-Denis", zipCode: "93200", lat: 48.9362, lng: 2.3574, type: "ville" },
+  { name: "Saint-Germain-en-Laye", zipCode: "78100", lat: 48.8989, lng: 2.0938, type: "ville" },
+  { name: "Saint-Mandé", zipCode: "94160", lat: 48.8412, lng: 2.4186, type: "ville" },
+  { name: "Saint-Ouen", zipCode: "93400", lat: 48.9119, lng: 2.3343, type: "ville" },
+  { name: "Sèvres", zipCode: "92310", lat: 48.8239, lng: 2.2114, type: "ville" },
+  { name: "Versailles", zipCode: "78000", lat: 48.8014, lng: 2.1301, type: "ville" },
+  { name: "Villejuif", zipCode: "94800", lat: 48.7920, lng: 2.3639, type: "ville" },
+  { name: "Vincennes", zipCode: "94300", lat: 48.8477, lng: 2.4397, type: "ville" },
+  { name: "Vitry-sur-Seine", zipCode: "94400", lat: 48.7875, lng: 2.3920, type: "ville" },
+  { name: "Évry", zipCode: "91000", lat: 48.6298, lng: 2.4418, type: "ville" }
+];
