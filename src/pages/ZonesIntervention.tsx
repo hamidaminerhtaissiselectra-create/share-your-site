@@ -34,8 +34,8 @@ import {
 } from "@/components/ui/accordion";
 import QuoteFormSection from "@/components/QuoteFormSection";
 
-import ileDeFranceImg from "@/assets/regions/ile-de-france.webp";
-import parisCityscapeImg from "@/assets/regions/paris-cityscape.webp";
+const ileDeFranceImg = "/images/assets/regions/ile-de-france.webp";
+const parisCityscapeImg = "/images/assets/regions/paris-cityscape.webp";
 
 const ZonesIntervention = () => {
   
@@ -242,6 +242,7 @@ const ZonesIntervention = () => {
                   src={ileDeFranceImg} 
                   alt="Réparation volets Île-de-France" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 to-transparent group-hover:from-foreground/10 transition-all duration-500" />
                 <div className="absolute top-4 left-4 w-12 h-12 rounded-xl bg-service-blue shadow-[0_4px_14px_hsl(213,72%,50%,0.35)] flex items-center justify-center">
@@ -290,6 +291,7 @@ const ZonesIntervention = () => {
                   src={parisCityscapeImg} 
                   alt="Réparation volets Paris" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 to-transparent group-hover:from-foreground/10 transition-all duration-500" />
                 <div className="absolute top-4 left-4 w-12 h-12 rounded-xl bg-service-orange shadow-[0_4px_14px_hsl(25,90%,55%,0.35)] flex items-center justify-center">

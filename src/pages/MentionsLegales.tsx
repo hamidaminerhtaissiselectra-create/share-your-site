@@ -14,7 +14,7 @@ const MentionsLegales = () => {
   });
 
   return (
-    <main>
+    <main id="main-content">
       <Navbar />
       
       <section className="pt-24 pb-16 bg-hero-gradient text-primary-foreground">

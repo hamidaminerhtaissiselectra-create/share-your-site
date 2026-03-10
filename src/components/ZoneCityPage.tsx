@@ -40,7 +40,7 @@ const ZoneCityPage = ({ city }: ZoneCityPageProps) => {
     "areaServed": { "@type": "City", "name": city.name },
     "telephone": "+33603205967",
     "priceRange": "€€",
-    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": String(city.testimonials.length * 47) },
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": String(city.testimonials.length) },
   };
 
   // FAQPage schema generated after faqs are defined - moved to render
@@ -385,11 +385,15 @@ const ZoneCityPage = ({ city }: ZoneCityPageProps) => {
               Contactez-nous pour un devis gratuit ou une intervention d'urgence. Techniciens disponibles 7j/7.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" asChild className="bg-accent-foreground text-accent hover:bg-accent-foreground/90 px-8 py-7 text-lg font-bold rounded-full shadow-xl">
-                <a href="/#devis">Demander un Devis</a>
+              <Button size="lg" asChild className="bg-white text-accent hover:bg-white/90 px-8 py-7 text-lg font-bold rounded-full shadow-xl">
+                <a href="/#devis" className="flex items-center gap-2">
+                  <ArrowRight className="h-5 w-5" /> Demander un Devis
+                </a>
               </Button>
-              <Button size="lg" variant="outline" asChild className="border-accent-foreground text-accent-foreground hover:bg-accent-foreground/10 px-8 py-7 text-lg font-bold rounded-full">
-                <a href="tel:0603205967">Appeler le 06 03 20 59 67</a>
+              <Button size="lg" asChild className="border-2 border-white text-white bg-transparent hover:bg-white/10 px-8 py-7 text-lg font-bold rounded-full">
+                <a href="tel:0603205967" className="flex items-center gap-2">
+                  <Phone className="h-5 w-5" /> 06 03 20 59 67
+                </a>
               </Button>
             </div>
           </motion.div>

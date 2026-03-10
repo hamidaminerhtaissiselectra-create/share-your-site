@@ -12,9 +12,9 @@ const features = [
 ];
 
 const blogLinks = [
-  { label: "Guide d'entretien des volets roulants", slug: "entretien-volets-roulants" },
-  { label: "Réparation ou remplacement : que choisir ?", slug: "reparation-vs-remplacement" },
-  { label: "Pannes fréquentes et solutions", slug: "pannes-frequentes-volets-roulants" },
+  { label: "Guide d'entretien des volets roulants", slug: "entretien-volets" },
+  { label: "Somfy vs Bubendorff : comparatif complet", slug: "somfy-vs-bubendorff" },
+  { label: "Guide motorisation volets roulants", slug: "guide-motorisation" },
 ];
 
 const ImageTextSection = () => {
@@ -34,7 +34,7 @@ const ImageTextSection = () => {
           >
             <div className="relative rounded-2xl overflow-hidden card-shadow">
                <img
-                src="/repair-service-v2.webp"
+                src="/images/assets/service-reparation-v2.webp"
                 alt="Technicien certifié RGE de Répar'Action Volets en train de réparer un volet roulant électrique Somfy à Paris — diagnostic gratuit et intervention sous 48h"
                 className="w-full h-auto object-cover"
                 width={800}

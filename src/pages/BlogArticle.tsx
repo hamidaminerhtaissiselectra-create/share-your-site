@@ -9,6 +9,19 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { blogArticles } from "@/data/blogArticles";
 
+const FRENCH_MONTHS: Record<string, string> = {
+  "janvier": "01", "février": "02", "mars": "03", "avril": "04",
+  "mai": "05", "juin": "06", "juillet": "07", "août": "08",
+  "septembre": "09", "octobre": "10", "novembre": "11", "décembre": "12",
+};
+
+const parseFrenchDate = (dateStr: string): string => {
+  const parts = dateStr.toLowerCase().match(/(\d+)\s+(\w+)\s+(\d{4})/);
+  if (!parts) return "2026-02-22";
+  const month = FRENCH_MONTHS[parts[2]] || "01";
+  return `${parts[3]}-${month}-${parts[1].padStart(2, "0")}`;
+};
+
 const BlogArticlePage = () => {
   const { slug } = useParams<{ slug: string }>();
   const article = blogArticles.find((a) => a.slug === slug);
@@ -35,13 +48,22 @@ const BlogArticlePage = () => {
 
       const articleSchema = {
         "@context": "https://schema.org",
-        "@type": "Article",
+        "@type": "BlogPosting",
         headline: article.title,
         description: article.metaDescription,
-        author: { "@type": "Organization", name: "Répar'Action Volets" },
-        publisher: { "@type": "Organization", name: "Répar'Action Volets", url: "https://reparaction-volets.fr" },
-        datePublished: "2026-02-22",
-        mainEntityOfPage: `https://reparaction-volets.fr/blog/${article.slug}`,
+        image: article.image ? `https://reparaction-volets.fr${article.image}` : undefined,
+        author: { "@type": "Organization", name: "Répar'Action Volets", url: "https://reparaction-volets.fr" },
+        publisher: { 
+          "@type": "Organization", 
+          name: "Répar'Action Volets", 
+          url: "https://reparaction-volets.fr",
+          logo: { "@type": "ImageObject", url: "https://reparaction-volets.fr/images/og-image.webp" }
+        },
+        datePublished: article.date ? parseFrenchDate(article.date) : "2026-02-22",
+        dateModified: article.date ? parseFrenchDate(article.date) : "2026-02-22",
+        mainEntityOfPage: { "@type": "WebPage", "@id": `https://reparaction-volets.fr/blog/${article.slug}` },
+        inLanguage: "fr-FR",
+        keywords: `${article.category}, volet roulant`,
       };
 
       const s1 = document.createElement("script");
@@ -63,18 +85,20 @@ const BlogArticlePage = () => {
 
   if (!article) return <Navigate to="/blog" replace />;
 
-  const relatedArticles = blogArticles.filter((a) => a.slug !== slug).slice(0, 3);
+  const relatedArticles = [
+    ...blogArticles.filter((a) => a.slug !== slug && a.category === article.category),
+    ...blogArticles.filter((a) => a.slug !== slug && a.category !== article.category),
+  ].slice(0, 3);
 
-  // Simple markdown-to-JSX renderer
+  // Simple markdown-to-JSX renderer with proper list wrapping
   const renderContent = (content: string) => {
     const lines = content.trim().split("\n");
-    const elements: JSX.Element[] = [];
+    const rawElements: { type: string; element: JSX.Element }[] = [];
     let tableRows: string[][] = [];
     let inTable = false;
     let tableIndex = 0;
 
     const processInline = (text: string) => {
-      // Bold
       const parts = text.split(/\*\*(.*?)\*\*/g);
       return parts.map((part, i) =>
         i % 2 === 1 ? (
@@ -88,8 +112,8 @@ const BlogArticlePage = () => {
     const flushTable = () => {
       if (tableRows.length > 1) {
         const headers = tableRows[0];
-        const rows = tableRows.slice(2); // skip separator row
-        elements.push(
+        const rows = tableRows.slice(2);
+        rawElements.push({ type: "other", element: (
           <div key={`table-${tableIndex}`} className="overflow-x-auto my-6">
             <table className="w-full text-sm border-collapse">
               <thead>
@@ -110,7 +134,7 @@ const BlogArticlePage = () => {
               </tbody>
             </table>
           </div>
-        );
+        )});
         tableIndex++;
       }
       tableRows = [];
@@ -120,7 +144,6 @@ const BlogArticlePage = () => {
     lines.forEach((line, i) => {
       const trimmed = line.trim();
 
-      // Table detection
       if (trimmed.startsWith("|")) {
         const cells = trimmed.split("|").filter(Boolean);
         if (!inTable) inTable = true;
@@ -130,43 +153,63 @@ const BlogArticlePage = () => {
         flushTable();
       }
 
-      if (!trimmed) {
-        return;
-      }
+      if (!trimmed) return;
 
       if (trimmed.startsWith("## ")) {
-        elements.push(
-          <h2 key={i} className="font-display text-2xl font-bold text-foreground mt-10 mb-4">{trimmed.slice(3)}</h2>
-        );
+        rawElements.push({ type: "other", element: <h2 key={i} className="font-display text-2xl font-bold text-foreground mt-10 mb-4">{trimmed.slice(3)}</h2> });
       } else if (trimmed.startsWith("### ")) {
-        elements.push(
-          <h3 key={i} className="font-display text-xl font-bold text-foreground mt-8 mb-3">{trimmed.slice(4)}</h3>
-        );
+        rawElements.push({ type: "other", element: <h3 key={i} className="font-display text-xl font-bold text-foreground mt-8 mb-3">{trimmed.slice(4)}</h3> });
       } else if (trimmed.startsWith("- ")) {
-        elements.push(
-          <li key={i} className="flex items-start gap-2 text-muted-foreground ml-4 mb-1.5">
+        rawElements.push({ type: "ul", element: (
+          <li key={i} className="flex items-start gap-2 text-muted-foreground mb-1.5">
             <span className="text-accent mt-1.5 shrink-0">•</span>
             <span>{processInline(trimmed.slice(2))}</span>
           </li>
-        );
+        )});
       } else if (/^\d+\.\s/.test(trimmed)) {
         const num = trimmed.match(/^(\d+)\.\s/)?.[1];
-        elements.push(
-          <li key={i} className="flex items-start gap-3 text-muted-foreground ml-4 mb-2">
+        rawElements.push({ type: "ol", element: (
+          <li key={i} className="flex items-start gap-3 text-muted-foreground mb-2">
             <span className="w-6 h-6 rounded-full bg-accent/10 text-accent text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">{num}</span>
             <span>{processInline(trimmed.replace(/^\d+\.\s/, ""))}</span>
           </li>
-        );
+        )});
       } else {
-        elements.push(
-          <p key={i} className="text-muted-foreground leading-relaxed mb-4">{processInline(trimmed)}</p>
-        );
+        rawElements.push({ type: "other", element: <p key={i} className="text-muted-foreground leading-relaxed mb-4">{processInline(trimmed)}</p> });
       }
     });
 
     if (inTable) flushTable();
 
-    return elements;
+    // Group consecutive li into ul/ol
+    const finalElements: JSX.Element[] = [];
+    let listBuffer: JSX.Element[] = [];
+    let listType = "";
+    let listIdx = 0;
+
+    const flushList = () => {
+      if (listBuffer.length > 0) {
+        const Tag = listType === "ol" ? "ol" : "ul";
+        finalElements.push(<Tag key={`list-${listIdx}`} className="ml-4 mb-4 list-none">{listBuffer}</Tag>);
+        listIdx++;
+        listBuffer = [];
+        listType = "";
+      }
+    };
+
+    rawElements.forEach((item) => {
+      if (item.type === "ul" || item.type === "ol") {
+        if (listType && listType !== item.type) flushList();
+        listType = item.type;
+        listBuffer.push(item.element);
+      } else {
+        flushList();
+        finalElements.push(item.element);
+      }
+    });
+    flushList();
+
+    return finalElements;
   };
 
   return (

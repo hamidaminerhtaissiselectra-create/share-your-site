@@ -7,17 +7,17 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import imgMotorisation from "@/assets/service-motorisation-v2.webp";
+const imgMotorisation = "/images/assets/service-motorisation-v2.webp";
 import ProcessSection from "@/components/ProcessSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import QuoteFormSection from "@/components/QuoteFormSection";
 import RepairShowcaseSection from "@/components/RepairShowcaseSection";
 import LocalZonesGrid from "@/components/LocalZonesGrid";
 import FAQSection from "@/components/FAQSection";
-import motorizationWiredImg from "@/assets/motorization-wired.webp";
-import motorizationRadioImg from "@/assets/motorization-radio.webp";
-import motorizationSmartImg from "@/assets/motorization-smart.webp";
-import motorizationTechnicianImg from "@/assets/paris-defense-motorisation.webp";
+const motorizationWiredImg = "/images/assets/motorization-wired.webp";
+const motorizationRadioImg = "/images/assets/motorization-radio.webp";
+const motorizationSmartImg = "/images/assets/motorization-smart.webp";
+const motorizationTechnicianImg = "/images/assets/paris-defense-motorisation.webp";
 import { fadeUp, staggerItem, hoverLift, heroEntry } from "@/lib/animations";
 
 const solutions = [
@@ -51,7 +51,7 @@ const MotorisationDomotiquePage = () => {
       <Navbar />
       <section ref={heroRef} className="relative pt-24 pb-16 min-h-[60vh] flex items-center overflow-hidden">
         <motion.div className="absolute inset-0" style={{ y: bgY }}>
-          <img src={imgMotorisation} alt="Motorisation de volets roulants" className="w-full h-[120%] object-cover" />
+          <img src={imgMotorisation} alt="Motorisation de volets roulants" className="w-full h-[120%] object-cover" fetchPriority="high" loading="eager" />
           <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40" />
         </motion.div>
         <div className="container mx-auto px-4 relative z-10">
@@ -131,7 +131,7 @@ const MotorisationDomotiquePage = () => {
                 className={`group bg-card rounded-2xl border ${s.color} overflow-hidden card-shadow hover:card-shadow-hover transition-all duration-500 flex flex-col`}
               >
                 <div className="relative h-56 overflow-hidden">
-                  <img src={s.image} alt={s.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <img src={s.image} alt={s.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <Badge className={`absolute top-4 right-4 text-xs font-bold border ${s.badgeColor} shadow-md backdrop-blur-sm`}>{s.prix}</Badge>
                 </div>

@@ -54,13 +54,14 @@ const OptimizedPicture = ({
       }
     );
 
-    if (pictureRef.current) {
-      observer.observe(pictureRef.current);
+    const currentRef = pictureRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (pictureRef.current) {
-        observer.unobserve(pictureRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [src, priority]);

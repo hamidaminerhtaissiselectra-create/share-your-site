@@ -7,14 +7,22 @@ const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem("cookie-consent");
-    if (!consent) {
-      setIsVisible(true);
+    try {
+      const consent = localStorage.getItem("cookie-consent");
+      if (!consent) {
+        setIsVisible(true);
+      }
+    } catch {
+      // localStorage not available (iframe restrictions)
     }
   }, []);
 
-  const acceptCookies = () => {
-    localStorage.setItem("cookie-consent", "true");
+  const handleConsent = (value: string) => {
+    try {
+      localStorage.setItem("cookie-consent", value);
+    } catch {
+      // localStorage not available
+    }
     setIsVisible(false);
   };
 
@@ -38,10 +46,10 @@ const CookieConsent = () => {
                   Nous utilisons des cookies pour améliorer votre expérience et analyser le trafic. En continuant, vous acceptez notre politique de confidentialité.
                 </p>
                 <div className="flex gap-3">
-                  <Button onClick={acceptCookies} className="bg-accent text-white hover:bg-accent/90 flex-1">
+                  <Button onClick={() => handleConsent("true")} className="bg-accent text-white hover:bg-accent/90 flex-1">
                     Accepter
                   </Button>
-                  <Button variant="outline" onClick={() => setIsVisible(false)} className="flex-1">
+                  <Button variant="outline" onClick={() => handleConsent("refused")} className="flex-1">
                     Refuser
                   </Button>
                 </div>

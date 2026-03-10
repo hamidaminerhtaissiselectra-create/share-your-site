@@ -24,7 +24,9 @@ import {
   HelpCircle,
   Home,
   ShieldCheck,
-  Truck
+  Truck,
+  Navigation,
+  Star
 } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
@@ -34,7 +36,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import useEmblaCarousel from "embla-carousel-react";
-import ileDeFranceImg from "@/assets/regions/ile-de-france.webp";
+const ileDeFranceImg = "/images/assets/regions/ile-de-france.webp";
 import { usePhoneCall } from "@/hooks/usePhoneCall";
 
 interface VilleCard {
@@ -43,6 +45,10 @@ interface VilleCard {
   image: string;
   description: string;
   highlight: string;
+  zipCode?: string;
+  lat?: number;
+  lng?: number;
+  voiceSearch?: string;
 }
 
 interface Departement {
@@ -62,14 +68,14 @@ const departements: Departement[] = [
     badgeVariant: "serviceOrange",
     subtitle: "Boulogne-Billancourt, Neuilly, La Défense, Courbevoie... Intervention rapide sur volets roulants résidentiels et bureaux.",
     villes: [
-      { name: "Boulogne-Billancourt", slug: "reparation-volet-boulogne-billancourt", image: "/images/zones/boulogne.webp", description: "Réparation et motorisation de volets roulants — résidences et bureaux.", highlight: "92 — Secteur Prioritaire" },
-      { name: "Neuilly-sur-Seine", slug: "reparation-volet-neuillysur-seine", image: "/images/zones/neuilly.webp", description: "Dépannage de volets haut de gamme — copropriétés de standing.", highlight: "92 — Prestige" },
-      { name: "Levallois-Perret", slug: "reparation-volet-levallois-perret", image: "/images/zones/levallois-perret.webp", description: "Installation et réparation de volets — immeubles récents certifiés.", highlight: "92 — Dynamique" },
-      { name: "Courbevoie", slug: "reparation-volet-courbevoie", image: "/images/zones/courbevoie.webp", description: "Dépannage express — proximité La Défense, intervention sous 48h.", highlight: "92 — La Défense" },
-      { name: "Puteaux", slug: "reparation-volet-puteaux", image: "/images/zones/puteaux.webp", description: "Volets roulants résidentiels et tertiaires — moteurs Somfy et Simu.", highlight: "92 — Tertiaire" },
-      { name: "Sèvres", slug: "reparation-volet-sevres", image: "/images/zones/sevres.webp", description: "Réparation de volets dans le secteur résidentiel — diagnostic gratuit.", highlight: "92 — Résidentiel" },
-      { name: "Saint-Cloud", slug: "reparation-volet-saint-cloud", image: "/images/zones/saint-cloud.webp", description: "Intervention sur volets de maisons et copropriétés — garantie 3 ans.", highlight: "92 — Patrimoine" },
-      { name: "Rueil-Malmaison", slug: "reparation-volet-rueil-malmaison", image: "/images/zones/rueil-malmaison.webp", description: "Motorisation et domotique — pilotage smartphone pour vos volets.", highlight: "92 — Connecté" },
+      { name: "Boulogne-Billancourt", slug: "reparation-volet-boulogne-billancourt", image: "/images/zones/boulogne.webp", zipCode: "92100", lat: 48.8352, lng: 2.2409, description: "Réparation et motorisation de volets roulants — résidences et bureaux.", highlight: "92 — Secteur Prioritaire", voiceSearch: "Réparateur volet roulant à Boulogne-Billancourt ?" },
+      { name: "Neuilly-sur-Seine", slug: "reparation-volet-neuillysur-seine", image: "/images/zones/neuilly.webp", zipCode: "92200", lat: 48.8885, lng: 2.2692, description: "Dépannage de volets haut de gamme — copropriétés de standing.", highlight: "92 — Prestige", voiceSearch: "Dépannage volet roulant haut de gamme à Neuilly-sur-Seine ?" },
+      { name: "Levallois-Perret", slug: "reparation-volet-levallois-perret", image: "/images/zones/levallois-perret.webp", zipCode: "92300", lat: 48.8946, lng: 2.2874, description: "Installation et réparation de volets — immeubles récents certifiés.", highlight: "92 — Dynamique", voiceSearch: "Installer un volet roulant neuf à Levallois-Perret ?" },
+      { name: "Courbevoie", slug: "reparation-volet-courbevoie", image: "/images/zones/courbevoie.webp", zipCode: "92400", lat: 48.8973, lng: 2.2522, description: "Dépannage express — proximité La Défense, intervention sous 48h.", highlight: "92 — La Défense", voiceSearch: "Dépannage volet roulant urgence Courbevoie La Défense ?" },
+      { name: "Puteaux", slug: "reparation-volet-puteaux", image: "/images/zones/puteaux.webp", zipCode: "92800", lat: 48.8850, lng: 2.2389, description: "Volets roulants résidentiels et tertiaires — moteurs Somfy et Simu.", highlight: "92 — Tertiaire", voiceSearch: "Motorisation volet roulant Somfy à Puteaux ?" },
+      { name: "Sèvres", slug: "reparation-volet-sevres", image: "/images/zones/sevres.webp", zipCode: "92310", lat: 48.8239, lng: 2.2114, description: "Réparation de volets dans le secteur résidentiel — diagnostic gratuit.", highlight: "92 — Résidentiel", voiceSearch: "Réparation volet roulant résidentiel à Sèvres ?" },
+      { name: "Saint-Cloud", slug: "reparation-volet-saint-cloud", image: "/images/zones/saint-cloud.webp", zipCode: "92210", lat: 48.8437, lng: 2.2195, description: "Intervention sur volets de maisons et copropriétés — garantie 3 ans.", highlight: "92 — Patrimoine", voiceSearch: "Réparateur volet roulant garanti à Saint-Cloud ?" },
+      { name: "Rueil-Malmaison", slug: "reparation-volet-rueil-malmaison", image: "/images/zones/rueil-malmaison.webp", zipCode: "92500", lat: 48.8763, lng: 2.1809, description: "Motorisation et domotique — pilotage smartphone pour vos volets.", highlight: "92 — Connecté", voiceSearch: "Domotique volet roulant connecté smartphone à Rueil-Malmaison ?" },
     ]
   },
   {
@@ -79,13 +85,13 @@ const departements: Departement[] = [
     badgeVariant: "serviceBlue",
     subtitle: "De Saint-Denis à Montreuil — réparations de volets roulants, motorisation et dépannage express.",
     villes: [
-      { name: "Saint-Denis", slug: "reparation-volet-saint-denis", image: "/images/zones/saint-denis.webp", description: "Réparation de volets en zone urbaine dense — toutes marques.", highlight: "93 — Forte Demande" },
-      { name: "Montreuil", slug: "reparation-volet-montreuil", image: "/images/zones/montreuil.webp", description: "Dépannage et remplacement — anciens et nouveaux bâtiments.", highlight: "93 — Mixte" },
-      { name: "Bobigny", slug: "reparation-volet-bobigny", image: "/images/zones/bobigny.webp", description: "Installation de volets isolants — économies d'énergie garanties.", highlight: "93 — Préfecture" },
-      { name: "Pantin", slug: "reparation-volet-pantin", image: "/images/zones/pantin.webp", description: "Motorisation de volets manuels — quartier en pleine rénovation.", highlight: "93 — Renouveau" },
-      { name: "Bagnolet", slug: "reparation-volet-bagnolet", image: "/images/zones/bagnolet.webp", description: "Dépannage rapide de volets bloqués — intervention sous 48h.", highlight: "93 — Express" },
-      { name: "Aubervilliers", slug: "reparation-volet-aubervilliers", image: "/images/zones/aubervilliers.webp", description: "Réparation et sécurisation de volets — résidences et commerces.", highlight: "93 — Sécurité" },
-      { name: "Saint-Ouen", slug: "reparation-volet-saint-ouen", image: "/images/zones/saint-ouen.webp", description: "Volets roulants pour copropriétés — devis adaptés syndics.", highlight: "93 — Copropriétés" },
+      { name: "Saint-Denis", slug: "reparation-volet-saint-denis", image: "/images/zones/saint-denis.webp", zipCode: "93200", lat: 48.9362, lng: 2.3574, description: "Réparation de volets en zone urbaine dense — toutes marques.", highlight: "93 — Forte Demande", voiceSearch: "Réparation volet roulant toutes marques à Saint-Denis ?" },
+      { name: "Montreuil", slug: "reparation-volet-montreuil", image: "/images/zones/montreuil.webp", zipCode: "93100", lat: 48.8638, lng: 2.4484, description: "Dépannage et remplacement — anciens et nouveaux bâtiments.", highlight: "93 — Mixte", voiceSearch: "Dépannage volet roulant rapide à Montreuil ?" },
+      { name: "Bobigny", slug: "reparation-volet-bobigny", image: "/images/zones/bobigny.webp", zipCode: "93000", lat: 48.9086, lng: 2.4397, description: "Installation de volets isolants — économies d'énergie garanties.", highlight: "93 — Préfecture", voiceSearch: "Installation volet roulant isolant à Bobigny ?" },
+      { name: "Pantin", slug: "reparation-volet-pantin", image: "/images/zones/pantin.webp", zipCode: "93500", lat: 48.8924, lng: 2.4073, description: "Motorisation de volets manuels — quartier en pleine rénovation.", highlight: "93 — Renouveau", voiceSearch: "Motoriser volet roulant manuel à Pantin ?" },
+      { name: "Bagnolet", slug: "reparation-volet-bagnolet", image: "/images/zones/bagnolet.webp", zipCode: "93170", lat: 48.8692, lng: 2.4181, description: "Dépannage rapide de volets bloqués — intervention sous 48h.", highlight: "93 — Express", voiceSearch: "Volet roulant bloqué à Bagnolet urgence ?" },
+      { name: "Aubervilliers", slug: "reparation-volet-aubervilliers", image: "/images/zones/aubervilliers.webp", zipCode: "93300", lat: 48.9131, lng: 2.3832, description: "Réparation et sécurisation de volets — résidences et commerces.", highlight: "93 — Sécurité", voiceSearch: "Volet roulant sécurisé anti-effraction à Aubervilliers ?" },
+      { name: "Saint-Ouen", slug: "reparation-volet-saint-ouen", image: "/images/zones/saint-ouen.webp", zipCode: "93400", lat: 48.9119, lng: 2.3343, description: "Volets roulants pour copropriétés — devis adaptés syndics.", highlight: "93 — Copropriétés", voiceSearch: "Devis volet roulant copropriété à Saint-Ouen ?" },
     ]
   },
   {
@@ -95,13 +101,13 @@ const departements: Departement[] = [
     badgeVariant: "serviceEmerald",
     subtitle: "Créteil, Vincennes, Vitry-sur-Seine... Zones résidentielles avec forte demande de services volets roulants.",
     villes: [
-      { name: "Créteil", slug: "reparation-volet-creteil", image: "/images/zones/creteil.webp", description: "Installation de volets roulants — motorisation et domotique.", highlight: "94 — Préfecture" },
-      { name: "Vitry-sur-Seine", slug: "reparation-volet-vitrysur-seine", image: "/images/zones/vitry-sur-seine.webp", description: "Dépannage de volets — quartiers résidentiels et ensembles neufs.", highlight: "94 — Résidentiel" },
-      { name: "Ivry-sur-Seine", slug: "reparation-volet-ivrysur-seine", image: "/images/zones/ivry-sur-seine.webp", description: "Réparation rapide — zone résidentielle et industrielle.", highlight: "94 — Mixte" },
-      { name: "Villejuif", slug: "reparation-volet-villejuif", image: "/images/zones/villejuif.webp", description: "Installation et motorisation — proximité Grand Paris Express.", highlight: "94 — Grand Paris" },
-      { name: "Vincennes", slug: "reparation-volet-vincennes", image: "/images/zones/vincennes.webp", description: "Dépannage rapide — quartier résidentiel, intervention sous 24h.", highlight: "94 — Express" },
-      { name: "Saint-Mandé", slug: "reparation-volet-saint-mande", image: "/images/zones/saint-mande.webp", description: "Volets haut de gamme — copropriétés et maisons de ville.", highlight: "94 — Standing" },
-      { name: "Fontenay-sous-Bois", slug: "reparation-volet-fontenaysous-bois", image: "/images/zones/fontenay-sous-bois.webp", description: "Remplacement et réparation — toutes marques de moteurs.", highlight: "94 — Toutes marques" },
+      { name: "Créteil", slug: "reparation-volet-creteil", image: "/images/zones/creteil.webp", zipCode: "94000", lat: 48.7771, lng: 2.4531, description: "Installation de volets roulants — motorisation et domotique.", highlight: "94 — Préfecture", voiceSearch: "Installation volet roulant motorisé à Créteil ?" },
+      { name: "Vitry-sur-Seine", slug: "reparation-volet-vitrysur-seine", image: "/images/zones/vitry-sur-seine.webp", zipCode: "94400", lat: 48.7875, lng: 2.3920, description: "Dépannage de volets — quartiers résidentiels et ensembles neufs.", highlight: "94 — Résidentiel", voiceSearch: "Dépannage volet roulant résidentiel Vitry-sur-Seine ?" },
+      { name: "Ivry-sur-Seine", slug: "reparation-volet-ivrysur-seine", image: "/images/zones/ivry-sur-seine.webp", zipCode: "94200", lat: 48.8158, lng: 2.3876, description: "Réparation rapide — zone résidentielle et industrielle.", highlight: "94 — Mixte", voiceSearch: "Réparation volet roulant rapide à Ivry-sur-Seine ?" },
+      { name: "Villejuif", slug: "reparation-volet-villejuif", image: "/images/zones/villejuif.webp", zipCode: "94800", lat: 48.7920, lng: 2.3639, description: "Installation et motorisation — proximité Grand Paris Express.", highlight: "94 — Grand Paris", voiceSearch: "Installation volet roulant près du Grand Paris Express Villejuif ?" },
+      { name: "Vincennes", slug: "reparation-volet-vincennes", image: "/images/zones/vincennes.webp", zipCode: "94300", lat: 48.8477, lng: 2.4397, description: "Dépannage rapide — quartier résidentiel, intervention sous 24h.", highlight: "94 — Express", voiceSearch: "Dépannage volet roulant urgent 24h à Vincennes ?" },
+      { name: "Saint-Mandé", slug: "reparation-volet-saint-mande", image: "/images/zones/saint-mande.webp", zipCode: "94160", lat: 48.8412, lng: 2.4186, description: "Volets haut de gamme — copropriétés et maisons de ville.", highlight: "94 — Standing", voiceSearch: "Volet roulant haut de gamme maison de ville Saint-Mandé ?" },
+      { name: "Fontenay-sous-Bois", slug: "reparation-volet-fontenaysous-bois", image: "/images/zones/fontenay-sous-bois.webp", zipCode: "94120", lat: 48.8514, lng: 2.4770, description: "Remplacement et réparation — toutes marques de moteurs.", highlight: "94 — Toutes marques", voiceSearch: "Réparation moteur volet roulant toutes marques Fontenay-sous-Bois ?" },
     ]
   },
   {
@@ -111,10 +117,10 @@ const departements: Departement[] = [
     badgeVariant: "serviceViolet",
     subtitle: "De Versailles à Saint-Germain-en-Laye — patrimoine historique et résidences modernes.",
     villes: [
-      { name: "Versailles", slug: "reparation-volet-versailles", image: "/images/zones/versailles.webp", description: "Réparation respectueuse du patrimoine architectural royal.", highlight: "78 — Patrimoine" },
-      { name: "Saint-Germain-en-Laye", slug: "reparation-volet-saint-germainen-laye", image: "/images/zones/saint-germain-en-laye.webp", description: "Spécialiste maisons individuelles et copropriétés.", highlight: "78 — Résidentiel" },
-      { name: "Rambouillet", slug: "reparation-volet-rambouillet", image: "/images/zones/rambouillet.webp", description: "Intervention en zone semi-rurale — motorisation et isolation.", highlight: "78 — Nature" },
-      { name: "Mantes-la-Jolie", slug: "reparation-volet-mantesla-jolie", image: "/images/zones/mantes-la-jolie.webp", description: "Dépannage et installation — résidences et logements sociaux.", highlight: "78 — Accessible" },
+      { name: "Versailles", slug: "reparation-volet-versailles", image: "/images/zones/versailles.webp", zipCode: "78000", lat: 48.8014, lng: 2.1301, description: "Réparation respectueuse du patrimoine architectural royal.", highlight: "78 — Patrimoine", voiceSearch: "Réparation volet roulant patrimoine à Versailles ?" },
+      { name: "Saint-Germain-en-Laye", slug: "reparation-volet-saint-germainen-laye", image: "/images/zones/saint-germain-en-laye.webp", zipCode: "78100", lat: 48.8989, lng: 2.0938, description: "Spécialiste maisons individuelles et copropriétés.", highlight: "78 — Résidentiel", voiceSearch: "Volet roulant maison individuelle Saint-Germain-en-Laye ?" },
+      { name: "Rambouillet", slug: "reparation-volet-rambouillet", image: "/images/zones/rambouillet.webp", zipCode: "78120", lat: 48.6444, lng: 1.8319, description: "Intervention en zone semi-rurale — motorisation et isolation.", highlight: "78 — Nature", voiceSearch: "Motorisation volet roulant maison campagne Rambouillet ?" },
+      { name: "Mantes-la-Jolie", slug: "reparation-volet-mantesla-jolie", image: "/images/zones/mantes-la-jolie.webp", zipCode: "78200", lat: 48.9907, lng: 1.7159, description: "Dépannage et installation — résidences et logements sociaux.", highlight: "78 — Accessible", voiceSearch: "Dépannage volet roulant pas cher Mantes-la-Jolie ?" },
     ]
   },
   {
@@ -124,11 +130,11 @@ const departements: Departement[] = [
     badgeVariant: "serviceCyan",
     subtitle: "Grande couronne — Évry, Melun, Cergy, Pontoise. Couverture complète avec techniciens locaux.",
     villes: [
-      { name: "Évry", slug: "reparation-volet-evry", image: "/images/zones/evry.webp", description: "Dépannage et réparation — préfecture de l'Essonne.", highlight: "91 — Préfecture" },
-      { name: "Corbeil-Essonnes", slug: "reparation-volet-corbeil-essonnes", image: "/images/zones/corbeil-essonnes.webp", description: "Intervention rapide — résidences et pavillons.", highlight: "91 — Résidentiel" },
-      { name: "Melun", slug: "reparation-volet-melun", image: "/images/zones/melun.webp", description: "Réparation de volets — Seine-et-Marne, diagnostic gratuit.", highlight: "77 — Préfecture" },
-      { name: "Cergy", slug: "reparation-volet-cergy", image: "/images/zones/cergy.webp", description: "Installation et motorisation — ville nouvelle dynamique.", highlight: "95 — Cergy-Pontoise" },
-      { name: "Pontoise", slug: "reparation-volet-pontoise", image: "/images/zones/pontoise.webp", description: "Dépannage et remplacement — centre historique et quartiers neufs.", highlight: "95 — Patrimoine" },
+      { name: "Évry", slug: "reparation-volet-evry", image: "/images/zones/evry.webp", zipCode: "91000", lat: 48.6298, lng: 2.4418, description: "Dépannage et réparation — préfecture de l'Essonne.", highlight: "91 — Préfecture", voiceSearch: "Dépannage volet roulant à Évry préfecture Essonne ?" },
+      { name: "Corbeil-Essonnes", slug: "reparation-volet-corbeil-essonnes", image: "/images/zones/corbeil-essonnes.webp", zipCode: "91100", lat: 48.6138, lng: 2.4840, description: "Intervention rapide — résidences et pavillons.", highlight: "91 — Résidentiel", voiceSearch: "Intervention rapide volet roulant Corbeil-Essonnes ?" },
+      { name: "Melun", slug: "reparation-volet-melun", image: "/images/zones/melun.webp", zipCode: "77000", lat: 48.5405, lng: 2.6559, description: "Réparation de volets — Seine-et-Marne, diagnostic gratuit.", highlight: "77 — Préfecture", voiceSearch: "Réparation volet roulant diagnostic gratuit à Melun ?" },
+      { name: "Cergy", slug: "reparation-volet-cergy", image: "/images/zones/cergy.webp", zipCode: "95000", lat: 49.0362, lng: 2.0771, description: "Installation et motorisation — ville nouvelle dynamique.", highlight: "95 — Cergy-Pontoise", voiceSearch: "Installation volet roulant motorisé à Cergy ?" },
+      { name: "Pontoise", slug: "reparation-volet-pontoise", image: "/images/zones/pontoise.webp", zipCode: "95000", lat: 49.0516, lng: 2.1010, description: "Dépannage et remplacement — centre historique et quartiers neufs.", highlight: "95 — Patrimoine", voiceSearch: "Dépannage volet roulant centre ville Pontoise ?" },
     ]
   },
 ];
@@ -144,6 +150,20 @@ const CitySlide = ({ city }: { city: VilleCard }) => (
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        
+        {/* GPS + ZIP badges */}
+        <div className="absolute top-3 right-3 flex gap-1">
+          <div className="px-2 py-1 bg-black/70 backdrop-blur-sm text-white text-[10px] font-medium rounded-full flex items-center gap-1">
+            <Navigation className="h-2.5 w-2.5" />
+            GPS
+          </div>
+          {city.zipCode && (
+            <div className="px-2 py-1 bg-primary/90 backdrop-blur-sm text-white text-[10px] font-bold rounded-full">
+              {city.zipCode}
+            </div>
+          )}
+        </div>
+        
         <h3 className="absolute bottom-4 left-4 right-4 text-lg font-bold text-white drop-shadow-lg">
           {city.name}
         </h3>
@@ -152,9 +172,25 @@ const CitySlide = ({ city }: { city: VilleCard }) => (
         <p className="text-sm text-muted-foreground leading-relaxed mb-3">
           {city.description}
         </p>
-        <div className="text-[10px] text-muted-foreground font-medium mb-4">
-          <span className="px-2 py-1 rounded-md bg-accent/5 border border-accent/10">{city.highlight}</span>
+        
+        {/* GPS Coordinates */}
+        {city.lat && city.lng && (
+          <div className="text-[9px] text-muted-foreground/70 font-mono mb-2 flex items-center gap-1">
+            <MapPin className="h-2.5 w-2.5" />
+            {city.lat.toFixed(4)}°N, {city.lng.toFixed(4)}°E
+          </div>
+        )}
+        
+        <div className="flex items-center justify-between mb-4">
+          <div className="text-[10px] text-muted-foreground font-medium">
+            <span className="px-2 py-1 rounded-md bg-accent/5 border border-accent/10">{city.highlight}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+            <span className="text-[10px] font-semibold text-muted-foreground">4.9</span>
+          </div>
         </div>
+        
         <div className="mt-auto flex items-center gap-2 text-xs font-semibold text-accent transition-all duration-300 group-hover:gap-3">
           Voir les détails <ArrowRight className="h-3 w-3" />
         </div>
@@ -289,11 +325,70 @@ const IdFPage = () => {
     { question: "Couvrez-vous tous les départements de l'Île-de-France ?", answer: "Oui, nous couvrons les 7 départements : Seine-et-Marne (77), Yvelines (78), Essonne (91), Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94) et Val-d'Oise (95). Plus de 50 villes desservies." },
     { question: "Intervenez-vous en résidence et en copropriété ?", answer: "Oui, nous intervenons aussi bien chez les particuliers que dans les copropriétés et les résidences. Nous pouvons fournir des devis conformes aux exigences des syndics et des bailleurs sociaux." },
     { question: "Quelles marques de volets roulants réparez-vous en IdF ?", answer: "Nos techniciens sont experts sur toutes les marques : Somfy, Bubendorff, Profalux, Franciaflex, Simu, Nice, Becker, Came, Zurflüh-Feller. Nous disposons de pièces de rechange dans nos véhicules pour les réparations au premier passage." },
-    { question: "Proposez-vous des contrats de maintenance pour les copropriétés ?", answer: "Oui, nous proposons des contrats de maintenance préventive pour les copropriétés et les gestionnaires immobiliers. Entretien annuel de tous les volets, vérification des moteurs, lubrification des coulisses. Tarifs dégressifs selon le nombre de volets." }
+    { question: "Proposez-vous des contrats de maintenance pour les copropriétés ?", answer: "Oui, nous proposons des contrats de maintenance préventive pour les copropriétés et les gestionnaires immobiliers. Entretien annuel de tous les volets, vérification des moteurs, lubrification des coulisses. Tarifs dégressifs selon le nombre de volets." },
+    // Voice search optimized FAQs
+    { question: "Où trouver un réparateur de volets roulants en Île-de-France ?", answer: "Répar'Action Volets couvre toute l'Île-de-France avec plus de 50 villes desservies. Nos techniciens locaux interviennent dans les Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94), Yvelines (78), Essonne (91), Seine-et-Marne (77) et Val-d'Oise (95)." },
+    { question: "Comment motoriser un volet roulant manuel en banlieue parisienne ?", answer: "Nos techniciens motorisent vos volets manuels en 1 à 2h par volet, sans travaux de maçonnerie. Moteurs Somfy, Simu ou Bubendorff. Compatible smartphone via TaHoma, Google Home et Alexa. Devis gratuit en Île-de-France." },
+    { question: "Mon volet roulant fait du bruit en Île-de-France, que faire ?", answer: "Un volet bruyant nécessite souvent une lubrification des coulisses, un recalibrage du tablier ou un changement de lames abîmées. Nos techniciens diagnostiquent gratuitement la cause et interviennent rapidement dans toute l'Île-de-France." }
   ];
+
+  // JSON-LD structured data
+  const allVilles = departements.flatMap(d => d.villes);
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://reparaction-volets.fr/zones-intervention/ile-de-france#business",
+        "name": "Répar'Action Volets Île-de-France",
+        "description": "Expert en dépannage et réparation de volets roulants en Île-de-France. 7 départements couverts, plus de 50 villes.",
+        "url": "https://reparaction-volets.fr/zones-intervention/ile-de-france",
+        "telephone": phoneNumber.replace(/\s/g, ''),
+        "priceRange": "€€",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "FR",
+          "addressRegion": "Île-de-France"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 48.8566,
+          "longitude": 2.3522
+        },
+        "areaServed": allVilles.map(v => ({
+          "@type": "City",
+          "name": v.name,
+          "geo": v.lat && v.lng ? {
+            "@type": "GeoCoordinates",
+            "latitude": v.lat,
+            "longitude": v.lng
+          } : undefined
+        })),
+        "serviceType": ["Réparation volets roulants", "Installation volets", "Motorisation volets", "Dépannage express"],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "bestRating": "5",
+          "ratingCount": "389"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://reparaction-volets.fr/zones-intervention/ile-de-france#faq",
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+        }))
+      }
+    ]
+  };
 
   return (
     <div className="min-h-screen bg-background">
+      {/* JSON-LD */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+      
       <Navbar />
 
       {/* Hero */}

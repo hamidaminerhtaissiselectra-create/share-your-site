@@ -11,7 +11,7 @@ const Footer = () => (
     <div className="border-b border-primary-foreground/10">
       <div className="container mx-auto px-4 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
-          <h3 className="font-display text-xl md:text-2xl font-bold">Prêt à réparer vos volets ?</h3>
+          <p className="font-display text-xl md:text-2xl font-bold">Prêt à réparer vos volets ?</p>
           <p className="text-primary-foreground/70 text-sm mt-1">Contactez-nous dès maintenant pour un devis gratuit et personnalisé.</p>
         </div>
         <div className="flex gap-3">

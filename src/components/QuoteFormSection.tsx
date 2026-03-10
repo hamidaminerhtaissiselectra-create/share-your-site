@@ -105,7 +105,7 @@ const QuoteFormSection = () => {
             ⚡ Réponse en moins de 24h
           </span>
           <h2 id="quote-heading" className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
-            Comment pouvons-nous vous aider ?
+            Devis Gratuit — Réparation & Installation Volets Roulants
           </h2>
           <p className="text-muted-foreground text-lg">Choisissez votre type de demande et répondez à quelques questions.</p>
         </motion.div>
@@ -115,7 +115,7 @@ const QuoteFormSection = () => {
           <div id="devis" className="scroll-mt-20" />
           <div className="h-1.5 rounded-t-2xl" style={{ background: "linear-gradient(to right, hsl(var(--service-blue)), hsl(var(--accent)), hsl(var(--service-orange)))" }} />
 
-          <div className="bg-card rounded-b-2xl shadow-2xl border border-border/50 overflow-hidden">
+          <form className="bg-card rounded-b-2xl shadow-2xl border border-border/50 overflow-hidden" onSubmit={(e) => { e.preventDefault(); if (step === 3 && canNext()) handleSubmit(); }}>
             {/* Mode tabs */}
             <div className="flex justify-center gap-3 pt-8 pb-4 px-6">
               <motion.button
@@ -294,7 +294,7 @@ const QuoteFormSection = () => {
                 )}
               </div>
             </div>
-          </div>
+          </form>
         </motion.div>
       </div>
     </section>

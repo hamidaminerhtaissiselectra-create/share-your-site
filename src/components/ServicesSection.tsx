@@ -3,11 +3,11 @@ import { Wrench, GlassWater, Cpu, LayoutGrid, Zap, ArrowRight, Shield } from "lu
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { fadeUp, staggerItem, hoverLiftMd } from "@/lib/animations";
-import imgReparation from "@/assets/service-reparation-v2.webp";
-import imgVitrerie from "@/assets/service-vitrerie-v2.webp";
-import imgMotorisation from "@/assets/service-motorisation-v2.webp";
-import imgComplete from "@/assets/service-installation-v2.webp";
-import imgDepannage from "@/assets/service-depannage-v2.webp";
+const imgReparation = "/images/assets/service-reparation-v2.webp";
+const imgVitrerie = "/images/assets/service-vitrerie-v2.webp";
+const imgMotorisation = "/images/assets/service-motorisation-v2.webp";
+const imgComplete = "/images/assets/service-installation-v2.webp";
+const imgDepannage = "/images/assets/service-depannage-v2.webp";
 
 const services = [
   {
@@ -55,7 +55,7 @@ const ServicesSection = () => (
           <Shield className="h-3.5 w-3.5" /> Solutions Complètes
         </span>
         <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
-          Dépannage, Réparation, Installation & Motorisation de Volets Roulants
+          Nos 5 Services Spécialisés pour Vos Volets Roulants
         </h2>
         <p className="text-muted-foreground mb-3">
           Dépannage express, réparation, installation et motorisation de volets roulants. Expertise multimarques (Somfy, Bubendorff, Profalux, Simu, Nice), intervention rapide, garantie 3 ans pièces et main d'œuvre. Paris & Île-de-France.

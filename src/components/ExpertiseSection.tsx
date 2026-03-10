@@ -26,6 +26,7 @@ const ExpertiseSection = ({ image, title, description, points }: ExpertiseSectio
                 src={image} 
                 alt={title} 
                 className="w-full h-auto object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent" />
             </div>

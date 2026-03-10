@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
@@ -101,38 +102,56 @@ const Navbar = () => {
       </div>
 
       {/* Mobile menu */}
-      {open && (
-        <div className="lg:hidden bg-card border-b border-border px-4 pb-4 space-y-1">
-          <Link to="/" onClick={() => setOpen(false)} className="block py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-            Accueil
-          </Link>
-          <button onClick={() => setServicesOpen(!servicesOpen)} className="flex items-center justify-between w-full py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-            Services <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
-          </button>
-          {servicesOpen && (
-            <div className="pl-4 space-y-1">
-              {serviceLinks.map((s) => (
-                <Link key={s.href} to={s.href} onClick={() => setOpen(false)} className="block py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors">
-                  {s.label}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="lg:hidden bg-card border-b border-border overflow-hidden"
+          >
+            <div className="px-4 pb-4 space-y-1">
+              <Link to="/" onClick={() => setOpen(false)} className="block py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                Accueil
+              </Link>
+              <button onClick={() => setServicesOpen(!servicesOpen)} className="flex items-center justify-between w-full py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                Services <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
+              </button>
+              <AnimatePresence>
+                {servicesOpen && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="pl-4 space-y-1 overflow-hidden"
+                  >
+                    {serviceLinks.map((s) => (
+                      <Link key={s.href} to={s.href} onClick={() => setOpen(false)} className="block py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors">
+                        {s.label}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              {navLinks.slice(1).map((l) => (
+                <Link key={l.href} to={l.href} onClick={() => handleNavClick(l.href)} className="block py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                  {l.label}
                 </Link>
               ))}
+              <div className="flex flex-col gap-2 pt-2">
+                <Button size="sm" variant="accent-outline" asChild className="w-full gap-2">
+                  <a href={`tel:${content.company.contact.phoneMobile.replace(/\s/g, '')}`}><Phone className="h-4 w-4" /> {content.company.contact.phoneMobile}</a>
+                </Button>
+                <Button size="sm" variant="accent" asChild className="w-full">
+                  <a href="/#devis" onClick={() => setOpen(false)}>Devis Gratuit</a>
+                </Button>
+              </div>
             </div>
-          )}
-          {navLinks.slice(1).map((l) => (
-            <Link key={l.href} to={l.href} onClick={() => handleNavClick(l.href)} className="block py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-              {l.label}
-            </Link>
-          ))}
-          <div className="flex flex-col gap-2 pt-2">
-            <Button size="sm" variant="accent-outline" asChild className="w-full gap-2">
-              <a href={`tel:${content.company.contact.phoneMobile.replace(/\s/g, '')}`}><Phone className="h-4 w-4" /> {content.company.contact.phoneMobile}</a>
-            </Button>
-            <Button size="sm" variant="accent" asChild className="w-full">
-              <a href="/#devis" onClick={() => setOpen(false)}>Devis Gratuit</a>
-            </Button>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

@@ -39,11 +39,7 @@ export const useSEO = ({
     if (noIndex) {
       setMetaTag('robots', 'noindex, nofollow');
     } else {
-      // Supprimer le noindex s'il existe
-      const robotsMeta = document.querySelector('meta[name="robots"]');
-      if (robotsMeta) {
-        robotsMeta.remove();
-      }
+      setMetaTag('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
     }
 
     // Update meta description
