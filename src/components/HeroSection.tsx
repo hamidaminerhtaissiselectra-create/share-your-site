@@ -86,7 +86,7 @@ const HeroSection = () => {
                 Demander un Devis Gratuit <ArrowRight className="h-5 w-5" />
               </a>
             </Button>
-            <Button size="lg" variant="accent-outline" asChild className="px-8 py-7 text-lg font-bold rounded-full transition-all duration-300 hover:scale-105">
+            <Button size="lg" variant="accent-outline" asChild className="px-6 sm:px-8 py-6 sm:py-7 text-base sm:text-lg font-bold rounded-full transition-all duration-300 hover:scale-105 w-full sm:w-auto">
               <a href="tel:0603205967" className="flex items-center gap-2">
                 <Phone className="h-5 w-5" /> 06 03 20 59 67
               </a>
