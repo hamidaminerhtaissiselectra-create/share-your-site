@@ -132,7 +132,7 @@ const ZoneCityPage = ({ city }: ZoneCityPageProps) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 sm:mb-10 leading-relaxed max-w-2xl"
             >
               {city.heroText}
             </motion.p>
