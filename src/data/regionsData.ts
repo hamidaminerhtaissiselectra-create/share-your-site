@@ -5,11 +5,13 @@ export interface RegionData {
   slug: string;
   description: string;
   seoDescription: string;
+  seoKeywords?: string[];
   departments: DepartmentData[];
   mainCities: string[];
   economicHighlights: string[];
   clientTypes: string[];
   gpsCenter?: { lat: number; lng: number };
+  imageAlt?: string;
 }
 
 export interface DepartmentData {
