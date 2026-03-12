@@ -28,7 +28,7 @@ export const idfCities = {
     { name: "Levallois-Perret", slug: "levallois-perret" },
     { name: "Courbevoie", slug: "courbevoie" },
     { name: "Puteaux", slug: "puteaux" },
-    { name: "La Défense", slug: "la-défense" },
+    { name: "La Défense", slug: "la-defense" },
     { name: "Sèvres", slug: "sevres" },
     { name: "Saint-Cloud", slug: "saint-cloud" },
     { name: "Rueil-Malmaison", slug: "rueil-malmaison" },
