@@ -25,11 +25,19 @@ export const regionsData: RegionData[] = [
     slug: "paris",
     description: "Répar'Action Volets est votre expert en dépannage, réparation, installation et motorisation de volets roulants à Paris. Intervention rapide dans tous les arrondissements pour un service de qualité.",
     seoDescription: "Dépannage volets roulants Paris, réparation volets Paris, installation et motorisation volets Paris. Intervention rapide dans tous les arrondissements de Paris. Devis gratuit.",
+    seoKeywords: [
+      "volet roulant Paris", "dépannage volet Paris", "réparation volet roulant Paris",
+      "motorisation volet Paris", "artisan RGE Paris", "volet bloqué Paris",
+      "installation volet roulant Paris", "Somfy Paris", "Bubendorff Paris",
+      "rideau métallique Paris", "vitrerie Paris", "devis volet roulant Paris",
+      "volet roulant 75", "volet roulant haussmannien", "volet roulant immeuble classé",
+    ],
     departments: [{ name: "Paris", code: "75" }],
     mainCities: ["Paris 1er", "Paris 2e", "Paris 3e", "Paris 4e", "Paris 5e", "Paris 6e", "Paris 7e", "Paris 8e", "Paris 9e", "Paris 10e", "Paris 11e", "Paris 12e", "Paris 13e", "Paris 14e", "Paris 15e", "Paris 16e", "Paris 17e", "Paris 18e", "Paris 19e", "Paris 20e"],
     economicHighlights: ["Centre économique et touristique mondial", "Sièges sociaux d'entreprises", "Commerces de luxe", "Patrimoine historique"],
     clientTypes: ["Particuliers", "Entreprises", "Commerces", "Syndics de copropriété", "Hôtels"],
-    gpsCenter: { lat: 48.8566, lng: 2.3522 }
+    gpsCenter: { lat: 48.8566, lng: 2.3522 },
+    imageAlt: "Panorama des toits de Paris avec volets roulants sur immeubles haussmanniens",
   },
   {
     name: "Île-de-France",
