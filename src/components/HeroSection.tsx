@@ -62,7 +62,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-            className="text-lg md:text-xl text-muted-foreground mb-6 max-w-2xl leading-relaxed hero-description"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground mb-4 sm:mb-6 max-w-2xl leading-relaxed hero-description"
           >
             Répar'Action Volets, votre spécialiste du dépannage, de la réparation, installation et motorisation de volets roulants à Paris et en Île-de-France. Techniciens certifiés RGE, intervention rapide sous 48h, diagnostic 100% gratuit et garantie 3 ans pièces & main d'œuvre.
           </motion.p>
