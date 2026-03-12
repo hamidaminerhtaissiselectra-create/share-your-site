@@ -70,7 +70,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-            className="text-base text-muted-foreground/80 mb-10 max-w-2xl leading-relaxed"
+            className="text-sm sm:text-base text-muted-foreground/80 mb-8 sm:mb-10 max-w-2xl leading-relaxed hidden sm:block"
           >
             Que votre volet soit bloqué en position ouverte, que le moteur Somfy ou Bubendorff émette un bourdonnement sans bouger, ou que vous souhaitiez passer à la motorisation connectée avec pilotage smartphone — nos artisans qualifiés interviennent dans tous les arrondissements de Paris (du 1er au 20e), à Boulogne-Billancourt, Neuilly, Saint-Denis, Versailles et dans plus de 50 communes d'Île-de-France. Devis transparent, sans surprise ni frais cachés.
           </motion.p>
