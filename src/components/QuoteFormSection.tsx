@@ -58,7 +58,7 @@ const QuoteFormSection = () => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const response = await fetch("https://formspree.io/f/xwpvjjpz", {
+      const response = await fetch("https://formspree.io/f/mlgpbozl", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

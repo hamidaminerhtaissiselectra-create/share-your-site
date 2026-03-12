@@ -55,7 +55,7 @@ export const idfCities = {
   "78": [
     { name: "Saint-Germain-en-Laye", slug: "saint-germainen-laye" },
     { name: "Rambouillet", slug: "rambouillet" },
-    { name: "Mantes-la-Jolie", slug: "mantesla-jolie" },
+    { name: "Mantes-la-Jolie", slug: "mantes-la-jolie" },
     { name: "Versailles", slug: "versailles" },
   ],
   "91": [
