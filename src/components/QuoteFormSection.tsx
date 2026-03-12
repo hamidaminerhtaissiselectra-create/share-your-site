@@ -167,7 +167,7 @@ const QuoteFormSection = () => {
                       {mode === "devis" ? "Quel service souhaitez-vous ?" : "Quel problème rencontrez-vous ?"}
                     </h3>
                     <p className="text-sm text-muted-foreground mb-6">Sélectionnez le service qui correspond à votre besoin.</p>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
                       {currentServices.map((s, idx) => {
                         const selected = selectedService === s.id;
                         return (
