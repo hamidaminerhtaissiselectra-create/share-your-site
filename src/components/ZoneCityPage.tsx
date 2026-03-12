@@ -390,7 +390,7 @@ const ZoneCityPage = ({ city }: ZoneCityPageProps) => {
                   <ArrowRight className="h-5 w-5" /> Demander un Devis
                 </a>
               </Button>
-              <Button size="lg" asChild className="border-2 border-white text-white bg-transparent hover:bg-white/10 px-8 py-7 text-lg font-bold rounded-full">
+              <Button size="lg" asChild className="border-2 border-white text-white bg-transparent hover:bg-white/10 px-6 sm:px-8 py-6 sm:py-7 text-base sm:text-lg font-bold rounded-full w-full sm:w-auto">
                 <a href="tel:0603205967" className="flex items-center gap-2">
                   <Phone className="h-5 w-5" /> 06 03 20 59 67
                 </a>
