@@ -17,6 +17,13 @@ export const content = {
       facebook: "https://www.facebook.com/reparactionvolets",
       instagram: "https://www.instagram.com/reparactionvolets",
     },
+    geo: {
+      lat: 48.7052,
+      lng: 2.8873,
+      rayon: "Île-de-France et toute la France",
+    },
+    siret: "982 156 978 000 16",
+    dateCreation: "2014",
   },
 
   // --- Navigation ---
@@ -93,4 +100,27 @@ export const content = {
 
   // --- Marques ---
   brands: ["Somfy", "Bubendorff", "Profalux", "Simu", "Nice"],
+
+  // --- SEO Global (mots-clés non visibles) ---
+  seoGlobal: {
+    motsClesPrincipaux: [
+      "réparation volet roulant", "dépannage volet roulant", "volet roulant Paris",
+      "motorisation volet roulant", "installation volet roulant", "artisan RGE",
+      "volet roulant bloqué", "sangle volet cassée", "moteur volet roulant",
+      "volet roulant électrique", "volet roulant solaire", "rideau métallique",
+      "vitrerie Paris", "double vitrage", "devis gratuit volet roulant",
+    ],
+    motsClésMarques: [
+      "Somfy", "Bubendorff", "Profalux", "Simu", "Nice",
+      "Somfy io", "Somfy RTS", "TaHoma", "Somfy Oximo",
+      "Bubendorff ID2", "Bubendorff solaire",
+    ],
+    motsClésServices: [
+      "dépannage express", "diagnostic gratuit", "garantie 3 ans",
+      "intervention sous 48h", "devis en ligne", "7j/7",
+      "pièces en stock", "technicien certifié",
+    ],
+    langues: ["fr"],
+    zoneIntervention: "Paris, Île-de-France, France entière",
+  },
 };
