@@ -123,7 +123,7 @@ const ZoneCityPage = ({ city }: ZoneCityPageProps) => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-              className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-foreground"
+              className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 sm:mb-6 text-foreground"
             >
               {city.h1}
             </motion.h1>
