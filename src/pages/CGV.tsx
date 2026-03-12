@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ChevronRight, ArrowRight, FileText, CreditCard, Clock, Shield, AlertTriangle, Scale, CheckCircle2, Award } from "lucide-react";
+import { ChevronRight, ArrowRight, FileText, CreditCard, Clock, Shield, AlertTriangle, Scale, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSEO } from "@/hooks/useSEO";
 import Navbar from "@/components/Navbar";
