@@ -384,7 +384,7 @@ const ZoneCityPage = ({ city }: ZoneCityPageProps) => {
             <p className="text-accent-foreground/90 mb-10 max-w-2xl mx-auto text-lg">
               Contactez-nous pour un devis gratuit ou une intervention d'urgence. Techniciens disponibles 7j/7.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
               <Button size="lg" asChild className="bg-white text-accent hover:bg-white/90 px-8 py-7 text-lg font-bold rounded-full shadow-xl">
                 <a href="/#devis" className="flex items-center gap-2">
                   <ArrowRight className="h-5 w-5" /> Demander un Devis
