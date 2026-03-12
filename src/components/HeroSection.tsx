@@ -81,7 +81,7 @@ const HeroSection = () => {
             transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12"
           >
-            <Button size="lg" variant="accent" asChild className="px-8 py-7 text-lg font-bold rounded-full shadow-xl transition-all duration-300 hover:scale-105">
+            <Button size="lg" variant="accent" asChild className="px-6 sm:px-8 py-6 sm:py-7 text-base sm:text-lg font-bold rounded-full shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto">
               <a href="/#devis" className="flex items-center gap-2">
                 Demander un Devis Gratuit <ArrowRight className="h-5 w-5" />
               </a>
