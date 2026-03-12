@@ -123,7 +123,7 @@ const ZoneCityPage = ({ city }: ZoneCityPageProps) => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-              className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-foreground"
+              className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 sm:mb-6 text-foreground"
             >
               {city.h1}
             </motion.h1>
@@ -132,7 +132,7 @@ const ZoneCityPage = ({ city }: ZoneCityPageProps) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 sm:mb-10 leading-relaxed max-w-2xl"
             >
               {city.heroText}
             </motion.p>
@@ -141,14 +141,14 @@ const ZoneCityPage = ({ city }: ZoneCityPageProps) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.6 }}
-              className="flex flex-wrap gap-4 mb-8"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8"
             >
-              <Button size="lg" variant="accent" asChild className="px-8 py-7 text-lg font-bold rounded-full shadow-xl transition-all duration-300 hover:scale-105">
+              <Button size="lg" variant="accent" asChild className="px-6 sm:px-8 py-6 sm:py-7 text-base sm:text-lg font-bold rounded-full shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto">
                 <a href="/#devis" className="flex items-center gap-2">
                   Devis Gratuit <ArrowRight className="h-5 w-5" />
                 </a>
               </Button>
-              <Button size="lg" variant="accent-outline" asChild className="px-8 py-7 text-lg font-bold rounded-full transition-all duration-300 hover:scale-105">
+              <Button size="lg" variant="accent-outline" asChild className="px-6 sm:px-8 py-6 sm:py-7 text-base sm:text-lg font-bold rounded-full transition-all duration-300 hover:scale-105 w-full sm:w-auto">
                 <a href="tel:0603205967" className="flex items-center gap-2">
                   <Phone className="h-5 w-5" /> 06 03 20 59 67
                 </a>
@@ -348,7 +348,7 @@ const ZoneCityPage = ({ city }: ZoneCityPageProps) => {
               <h2 className="font-display text-3xl font-bold text-foreground mb-4">Zones d'Intervention Voisines</h2>
               <p className="text-muted-foreground mb-8">Nous intervenons également dans les villes et quartiers voisins.</p>
             </AnimatedSection>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
               {city.nearbyLinks.map((link) => (
                 <Link
                   key={link.slug}
@@ -384,13 +384,13 @@ const ZoneCityPage = ({ city }: ZoneCityPageProps) => {
             <p className="text-accent-foreground/90 mb-10 max-w-2xl mx-auto text-lg">
               Contactez-nous pour un devis gratuit ou une intervention d'urgence. Techniciens disponibles 7j/7.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" asChild className="bg-white text-accent hover:bg-white/90 px-8 py-7 text-lg font-bold rounded-full shadow-xl">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
+              <Button size="lg" asChild className="bg-white text-accent hover:bg-white/90 px-6 sm:px-8 py-6 sm:py-7 text-base sm:text-lg font-bold rounded-full shadow-xl w-full sm:w-auto">
                 <a href="/#devis" className="flex items-center gap-2">
                   <ArrowRight className="h-5 w-5" /> Demander un Devis
                 </a>
               </Button>
-              <Button size="lg" asChild className="border-2 border-white text-white bg-transparent hover:bg-white/10 px-8 py-7 text-lg font-bold rounded-full">
+              <Button size="lg" asChild className="border-2 border-white text-white bg-transparent hover:bg-white/10 px-6 sm:px-8 py-6 sm:py-7 text-base sm:text-lg font-bold rounded-full w-full sm:w-auto">
                 <a href="tel:0603205967" className="flex items-center gap-2">
                   <Phone className="h-5 w-5" /> 06 03 20 59 67
                 </a>

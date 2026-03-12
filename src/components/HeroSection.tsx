@@ -53,7 +53,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-8 text-foreground"
+            className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold leading-tight mb-6 sm:mb-8 text-foreground"
           >
             Dépannage, Réparation & Motorisation de <span className="text-accent">Volets Roulants</span> à Paris
           </motion.h1>
@@ -62,7 +62,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-            className="text-lg md:text-xl text-muted-foreground mb-6 max-w-2xl leading-relaxed hero-description"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground mb-4 sm:mb-6 max-w-2xl leading-relaxed hero-description"
           >
             Répar'Action Volets, votre spécialiste du dépannage, de la réparation, installation et motorisation de volets roulants à Paris et en Île-de-France. Techniciens certifiés RGE, intervention rapide sous 48h, diagnostic 100% gratuit et garantie 3 ans pièces & main d'œuvre.
           </motion.p>
@@ -70,7 +70,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-            className="text-base text-muted-foreground/80 mb-10 max-w-2xl leading-relaxed"
+            className="text-sm sm:text-base text-muted-foreground/80 mb-8 sm:mb-10 max-w-2xl leading-relaxed hidden sm:block"
           >
             Que votre volet soit bloqué en position ouverte, que le moteur Somfy ou Bubendorff émette un bourdonnement sans bouger, ou que vous souhaitiez passer à la motorisation connectée avec pilotage smartphone — nos artisans qualifiés interviennent dans tous les arrondissements de Paris (du 1er au 20e), à Boulogne-Billancourt, Neuilly, Saint-Denis, Versailles et dans plus de 50 communes d'Île-de-France. Devis transparent, sans surprise ni frais cachés.
           </motion.p>
@@ -79,14 +79,14 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-            className="flex flex-wrap gap-4 mb-12"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12"
           >
-            <Button size="lg" variant="accent" asChild className="px-8 py-7 text-lg font-bold rounded-full shadow-xl transition-all duration-300 hover:scale-105">
+            <Button size="lg" variant="accent" asChild className="px-6 sm:px-8 py-6 sm:py-7 text-base sm:text-lg font-bold rounded-full shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto">
               <a href="/#devis" className="flex items-center gap-2">
                 Demander un Devis Gratuit <ArrowRight className="h-5 w-5" />
               </a>
             </Button>
-            <Button size="lg" variant="accent-outline" asChild className="px-8 py-7 text-lg font-bold rounded-full transition-all duration-300 hover:scale-105">
+            <Button size="lg" variant="accent-outline" asChild className="px-6 sm:px-8 py-6 sm:py-7 text-base sm:text-lg font-bold rounded-full transition-all duration-300 hover:scale-105 w-full sm:w-auto">
               <a href="tel:0603205967" className="flex items-center gap-2">
                 <Phone className="h-5 w-5" /> 06 03 20 59 67
               </a>
@@ -97,7 +97,7 @@ const HeroSection = () => {
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }} 
             transition={{ duration: 1, delay: 0.8 }}
-            className="flex flex-wrap gap-4"
+            className="flex flex-wrap gap-3 sm:gap-4"
           >
             {badges.map((b, i) => (
               <motion.div 

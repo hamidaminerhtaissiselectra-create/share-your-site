@@ -58,7 +58,7 @@ const QuoteFormSection = () => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const response = await fetch("https://formspree.io/f/xwpvjjpz", {
+      const response = await fetch("https://formspree.io/f/mlgpbozl", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -167,7 +167,7 @@ const QuoteFormSection = () => {
                       {mode === "devis" ? "Quel service souhaitez-vous ?" : "Quel problème rencontrez-vous ?"}
                     </h3>
                     <p className="text-sm text-muted-foreground mb-6">Sélectionnez le service qui correspond à votre besoin.</p>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
                       {currentServices.map((s, idx) => {
                         const selected = selectedService === s.id;
                         return (
@@ -206,7 +206,7 @@ const QuoteFormSection = () => {
                     <p className="text-sm text-muted-foreground mb-6">
                       {mode === "devis" ? "Quand souhaitez-vous réaliser ce projet ?" : "Quelle est l'urgence de l'intervention ?"}
                     </p>
-                    <div className="grid grid-cols-3 gap-3 mb-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
                       {urgencyOptions.map((o, idx) => {
                         const selected = urgency === o.id;
                         return (
