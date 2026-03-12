@@ -206,7 +206,7 @@ const QuoteFormSection = () => {
                     <p className="text-sm text-muted-foreground mb-6">
                       {mode === "devis" ? "Quand souhaitez-vous réaliser ce projet ?" : "Quelle est l'urgence de l'intervention ?"}
                     </p>
-                    <div className="grid grid-cols-3 gap-3 mb-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
                       {urgencyOptions.map((o, idx) => {
                         const selected = urgency === o.id;
                         return (
