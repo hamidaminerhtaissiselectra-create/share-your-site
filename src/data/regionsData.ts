@@ -44,6 +44,14 @@ export const regionsData: RegionData[] = [
     slug: "ile-de-france",
     description: "Répar'Action Volets intervient dans toute l'Île-de-France pour le dépannage, la réparation, l'installation et la motorisation de vos volets roulants. Service rapide et efficace dans les départements 77, 78, 91, 92, 93, 94, 95.",
     seoDescription: "Dépannage et réparation volets roulants Île-de-France, installation et motorisation volets 77, 78, 91, 92, 93, 94, 95. Intervention rapide et devis gratuit.",
+    seoKeywords: [
+      "volet roulant Île-de-France", "dépannage volet roulant IDF", "réparation volet 92",
+      "volet roulant 93", "volet roulant 94", "volet roulant 78",
+      "motorisation volet Hauts-de-Seine", "installation volet Val-de-Marne",
+      "volet roulant Seine-Saint-Denis", "artisan RGE Île-de-France",
+      "Somfy Île-de-France", "Bubendorff banlieue Paris",
+      "devis volet roulant banlieue", "rénovation volet copropriété IDF",
+    ],
     departments: [
       { name: "Seine-et-Marne", code: "77" }, { name: "Yvelines", code: "78" }, { name: "Essonne", code: "91" },
       { name: "Hauts-de-Seine", code: "92" }, { name: "Seine-Saint-Denis", code: "93" }, { name: "Val-de-Marne", code: "94" }, { name: "Val-d'Oise", code: "95" }
@@ -51,7 +59,8 @@ export const regionsData: RegionData[] = [
     mainCities: ["Créteil", "Vitry-sur-Seine", "Saint-Maur-des-Fossés", "Boulogne-Billancourt", "Versailles", "Saint-Denis", "Nanterre", "Argenteuil", "Montreuil", "Aubervilliers", "Cergy", "Évry", "Melun", "Mantes-la-Jolie", "Rambouillet"],
     economicHighlights: ["Pôles d'activités économiques majeurs", "Zones résidentielles denses", "Infrastructures de transport développées"],
     clientTypes: ["Particuliers", "Entreprises", "Commerces", "Administrations", "Syndics de copropriété"],
-    gpsCenter: { lat: 48.8499, lng: 2.6370 }
+    gpsCenter: { lat: 48.8499, lng: 2.6370 },
+    imageAlt: "Vue aérienne de l'Île-de-France avec habitations résidentielles et volets roulants",
   },
 ];
 
