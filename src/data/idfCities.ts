@@ -39,7 +39,7 @@ export const idfCities = {
     { name: "Bobigny", slug: "bobigny" },
     { name: "Pantin", slug: "pantin" },
     { name: "Bagnolet", slug: "bagnolet" },
-    { name: "Noisy-le-Sec", slug: "noisyle-sec" },
+    { name: "Noisy-le-Sec", slug: "noisy-le-sec" },
     { name: "Aubervilliers", slug: "aubervilliers" },
     { name: "Saint-Ouen", slug: "saint-ouen" },
   ],
