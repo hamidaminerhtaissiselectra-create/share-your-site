@@ -50,7 +50,7 @@ export const idfCities = {
     { name: "Villejuif", slug: "villejuif" },
     { name: "Fontenay-sous-Bois", slug: "fontenay-sous-bois" },
     { name: "Vincennes", slug: "vincennes" },
-    { name: "Saint-Mandé", slug: "saint-mandé" },
+    { name: "Saint-Mandé", slug: "saint-mande" },
   ],
   "78": [
     { name: "Saint-Germain-en-Laye", slug: "saint-germainen-laye" },
