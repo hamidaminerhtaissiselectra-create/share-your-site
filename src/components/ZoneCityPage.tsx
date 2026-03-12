@@ -348,7 +348,7 @@ const ZoneCityPage = ({ city }: ZoneCityPageProps) => {
               <h2 className="font-display text-3xl font-bold text-foreground mb-4">Zones d'Intervention Voisines</h2>
               <p className="text-muted-foreground mb-8">Nous intervenons également dans les villes et quartiers voisins.</p>
             </AnimatedSection>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
               {city.nearbyLinks.map((link) => (
                 <Link
                   key={link.slug}
