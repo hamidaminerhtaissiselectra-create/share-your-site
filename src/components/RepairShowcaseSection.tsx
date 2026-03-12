@@ -51,10 +51,10 @@ const RepairShowcaseSection = ({ image, title, description, highlights, stats }:
 
           {/* Contenu à droite */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
               {title}
