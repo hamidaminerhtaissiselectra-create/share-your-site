@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { ZoneCityData } from "@/data/zonesPagesData";
+import { citiesLocationData } from "@/data/villes-geolocalisation";
 import AnimatedSection from "@/components/AnimatedSection";
 import { useRef } from "react";
 import {
