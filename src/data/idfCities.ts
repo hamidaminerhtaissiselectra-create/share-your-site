@@ -48,7 +48,7 @@ export const idfCities = {
     { name: "Vitry-sur-Seine", slug: "vitry-sur-seine" },
     { name: "Ivry-sur-Seine", slug: "ivry-sur-seine" },
     { name: "Villejuif", slug: "villejuif" },
-    { name: "Fontenay-sous-Bois", slug: "fontenaysous-bois" },
+    { name: "Fontenay-sous-Bois", slug: "fontenay-sous-bois" },
     { name: "Vincennes", slug: "vincennes" },
     { name: "Saint-Mandé", slug: "saint-mandé" },
   ],
